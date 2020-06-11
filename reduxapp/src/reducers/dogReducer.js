@@ -1,5 +1,6 @@
 export const initialState = {
     message: "",
+    isFetchingData: false,
     errorMessage: "",
 };
 
@@ -8,18 +9,19 @@ export const dogReducer= (state = initialState, action) => {
     case "NEW_DOG" :
         return {
             ...state,
-            initialState: {
-                message: ""
-            }
+            isFetchingData: true,
+            messsage: ""
         };
     case "DOG_CALL" :
         return {
             ...state,
-            initialState: action.payload
+            isFetchingData: false,
+            message: action.payload
         };
     case "CALL_ERROR" : 
         return {
             ...state,
+            isFetchingData: false,
             errorMessage: action.payload
         };
     default:

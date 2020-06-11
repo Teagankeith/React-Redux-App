@@ -1,13 +1,38 @@
 import React from "react"
+import { connect } from "react-redux"
+import { getDog } from "../actions/index"
 
 
  const DogCard = props => {
+   const getDogHandler= e => {
+       e.preventDefault();
+       props.getDog();
+   }
+   
     return (
-        <div className="dog-card">
-        <img src={props.message} alt=""/>
-        <button>Get a dog!</button>
+    
+       <div className="dog-card">
+        {
+            props.isFetchingData ? (
+                <h2>Fethcing Data</h2>
+            ) : (
+             <>
+            <img src={props.message} alt=""/>
+            <button onClick={getDogHandler}>Get a dog!</button>
+             </>
+            )
+        }
         </div>
-    )
+    
+    )       
 }
 
-export default DogCard
+const mapStateToProps = state => {
+    return {
+        message: state.message,
+        isFetchingData: state.isFetchingData
+    }
+}
+
+
+export default connect(mapStateToProps, {getDog})(DogCard)

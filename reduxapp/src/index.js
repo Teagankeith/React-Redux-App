@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from "react-redux"
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import { dogReducer } from './reducers/dogReducer';
+import thunk from "redux-thunk";
 
 import './index.css';
 import App from './App';
@@ -10,8 +11,8 @@ import * as serviceWorker from './serviceWorker';
 
 
 
-const store = createStore(dogReducer)
-
+const store = createStore(dogReducer, applyMiddleware(thunk))
+  
 ReactDOM.render(
   <React.StrictMode>
    <Provider store={store}>

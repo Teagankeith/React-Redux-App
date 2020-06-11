@@ -10,7 +10,6 @@ import { getDog } from "../actions/index"
    }
    
     return (
-    
        <div className="dog-card">
         {
             props.isFetchingData ? (
@@ -30,7 +29,8 @@ import { getDog } from "../actions/index"
 const mapStateToProps = state => {
     return {
         message: state.message,
-        isFetchingData: state.isFetchingData
+        isFetchingData: state.isFetchingData,
+        error: state.errorMessage
     }
 }
 
